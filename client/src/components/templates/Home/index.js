@@ -2,26 +2,28 @@ import React, { Component } from 'react';
 
 import ContentBlock from '../../utilities/ContentBlock';
 
-import './index.css';
+// Material UI
+import Typography from '@material-ui/core/Typography';
 
 class Home extends Component {
 
-	render() {
+  render() {
 
-		if (this.props.data) {
+    if (this.props.data) {
 
-			const data = this.props.data;
+      const data = this.props.data;
 
-			return (
-				<article className="home">
-					<h1>{data.title.rendered}</h1>
-					<ContentBlock content={data.content.rendered} />
-				</article>
-			);
-		}
+      return (
+        <article className="home">
+          <Typography variant="body2">
+            <ContentBlock content={data.content.rendered} />
+          </Typography>
+        </article>
+      );
+    }
 
-		return null;
-	};
+    return null;
+  };
 };
 
 export default Home;

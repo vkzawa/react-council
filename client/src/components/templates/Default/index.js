@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import he from 'he';
+
+// Material UI
+import Typography from '@material-ui/core/Typography';
 
 import ContentBlock from '../../utilities/ContentBlock';
 
@@ -6,22 +10,23 @@ import './index.css';
 
 class Default extends Component {
 
-	render() {
+  render() {
+    if (this.props.data) {
+      let data = this.props.data;
+      const decodedTitle = he.decode(data.title.rendered);
 
-		if (this.props.data) {
+      return (
+        <article className={`${this.props.slug} default-template`}>
+          <Typography variant="h4">{decodedTitle}</Typography>
+          <Typography variant="body1">
+            <ContentBlock content={data.content.rendered} />
+          </Typography>
+        </article>
+      );
+    }
 
-			let data = this.props.data;
-
-			return (
-				<article className={`${this.props.slug} default-template`}>
-					<h1>{data.title.rendered}</h1>
-					<ContentBlock content={data.content.rendered} />
-				</article>
-			);
-		}
-
-		return null;
-	}
+    return null;
+  }
 }
 
 export default Default;
