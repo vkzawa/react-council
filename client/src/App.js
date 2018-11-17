@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import AsyncChunks from './components/utilities/AsyncLoader';
 import NotFound from './components/templates/NotFound';
-import Header from './components/layout/Header';
+import SiteSidebar from './components/layout/SiteSidebar';
 import MobileHeader from './components/layout/MobileHeader';
 import MobileNav from './components/layout/MobileNav';
 import CityNav from './components/shared/CityNav';
@@ -134,7 +134,7 @@ class App extends Component {
           <AppLayout>
             <Hidden smDown>
               <AppLayoutAside>
-                <Header />
+                <SiteSidebar />
               </AppLayoutAside>
             </Hidden>
 
