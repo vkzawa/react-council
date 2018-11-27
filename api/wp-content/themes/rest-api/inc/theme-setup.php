@@ -1,5 +1,9 @@
 <?php
 
+// Add Theme Support
+add_theme_support( 'align-wide' );
+add_theme_support( 'align-full' );
+
 // Register menus
 add_action( 'after_setup_theme', 'react_wp_rest_setup' );
 function react_wp_rest_setup() {

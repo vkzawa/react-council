@@ -15,7 +15,7 @@ class Home extends Component {
 
       return (
         <article className="home">
-          <Typography variant="body2">
+          <Typography variant="body2" component="div">
             <ContentBlock content={data.content.rendered} />
           </Typography>
         </article>
