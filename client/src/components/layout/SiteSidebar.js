@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import he from 'he';
+import { NavLink } from 'react-router-dom';
 import { SocialIcon } from 'react-social-icons';
 import SiteNavItemsContainer from './SiteNavItemsContainer';
 
 import CESPNCLogo from '../../images/cespnc-logo.jpg';
 
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import blue from '@material-ui/core/colors/blue';
 import Divider from '@material-ui/core/Divider';
 
 const SiteSidebar = () => (
@@ -38,7 +32,7 @@ const SiteSidebar = () => (
   </header>
 );
 
-const SiteLogo = styled('NavLink')`
+const SiteLogo = styled(NavLink)`
   > img {
     display: block;
     margin: 16px auto;

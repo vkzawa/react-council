@@ -109,7 +109,7 @@ class App extends Component {
       },
       palette: {
         primary: {
-          main: blue[900],
+          main: '#337ab0',
         },
         secondary: {
           main: yellow[900],

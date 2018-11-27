@@ -4,8 +4,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import he from 'he';
 
-import api from '../../api';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -60,7 +58,7 @@ class SiteNavItems extends Component {
     });
 
     Object.keys(parentMenuItems).forEach(parentId => {
-      parentMenuItems[parentId].childArray = props.menu.filter(item => item.menu_item_parent == parentId);
+      parentMenuItems[parentId].childArray = props.menu.filter(item => item.menu_item_parent === parentId);
     });
 
     this.state = {
@@ -70,7 +68,7 @@ class SiteNavItems extends Component {
     this.toggleNested = this.toggleNested.bind(this);
   }
 
-  toggleNested = (event, parentId) => {
+  toggleNested = (parentId) => {
     var newState = update(this.state, {
       parentMenuItems: { [parentId]: { open: {$set: !this.state.parentMenuItems[parentId].open} } }
     });
@@ -81,10 +79,10 @@ class SiteNavItems extends Component {
     const { parentMenuItems } = this.state;
     const { menu } = this.props;
 
-    return this.props.menu.map((menuItem, i) => {
-      let IconTag = (menuItem.description)? iconMap[menuItem.description]: null;
-      let isParent = menuItem.ID in parentMenuItems;
-      let isChild = menuItem.menu_item_parent == 0 ? false : true;
+    return menu.map((menuItem, i) => {
+      const IconTag = (menuItem.description)? iconMap[menuItem.description]: null;
+      const isParent = menuItem.ID in parentMenuItems;
+      const isChild = menuItem.menu_item_parent === "0" ? false : true;
 
       if (isParent) {
         var childArray = parentMenuItems[menuItem.ID].childArray;
@@ -104,7 +102,7 @@ class SiteNavItems extends Component {
             exact
           >
             {IconTag &&
-              <ListItemIcon><IconTag /></ListItemIcon>
+              <ListItemIcon><IconTag color="primary" /></ListItemIcon>
             }
 
             <ListItemText
@@ -114,38 +112,37 @@ class SiteNavItems extends Component {
 
             {isParent &&
               <ListItemSecondaryAction>
-                <IconButton onClick={(event) => this.toggleNested(event, menuItem.ID)}>
+                <NestedToggle size="small" onClick={() => this.toggleNested(menuItem.ID)}>
                   {parentMenuItems[menuItem.ID].open ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
-                </IconButton>
+                </NestedToggle>
               </ListItemSecondaryAction>
             }
           </ListItem>
 
           {childArray &&
             <Collapse in={parentMenuItems[menuItem.ID].open} timeout="auto" unmountOnExit>
-              <SubList disablePadding>
+              <NestedList disablePadding>
                 {childArray.map( childItem => {
                   let IconTag = (childItem.description) ? iconMap[childItem.description]: null;
 
                   return(
                     <ListItem button
+                      key={childItem.ID}
                       component={NavLink}
                       to={childItem.url}
                       exact
                       activeStyle={activeStyles}
                     >
-                      {IconTag &&
-                        <ListItemIcon><IconTag /></ListItemIcon>
-                      }
-
-                      <ListItemText
-                        primary={he.decode(childItem.title)}
-                        primaryTypographyProps= {{ variant: 'body2' }}
-                      />
+                      <NestedListItem>
+                        <ListItemText
+                          primary={he.decode(childItem.title)}
+                          primaryTypographyProps= {{ variant: 'body2' }}
+                        />
+                      </NestedListItem>
                     </ListItem>
                   );
                 })}
-              </SubList>
+              </NestedList>
             </Collapse>
           }
         </React.Fragment>
@@ -154,8 +151,16 @@ class SiteNavItems extends Component {
   }
 }
 
-const SubList = styled.div`
+const NestedList = styled(List)`
   background-color: #f5f5f5
+`;
+
+const NestedListItem = styled.div`
+  padding-left: 56px;
+`;
+
+const NestedToggle = styled(IconButton)`
+  padding: 6px !important;
 `;
 
 export default SiteNavItems;
