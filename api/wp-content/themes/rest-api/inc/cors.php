@@ -20,7 +20,8 @@ add_action( 'rest_api_init', function() {
 		if(isset($_SERVER['HTTP_ORIGIN'])) {
 			$origin = $_SERVER['HTTP_ORIGIN'];
 			if($origin == $allowed_origin_1 || $origin == $allowed_origin_2) {
-				header('Access-Control-Allow-Origin: ' . $origin);
+				header('Access-Control-Allow-Origin: *');
+				// TODO: Setup proper scope for production domains
 			}
 		}
 
@@ -30,4 +31,8 @@ add_action( 'rest_api_init', function() {
 	});
 }, 15 );
 
+add_filter('rest_url', function($url) {
+    $url = str_replace(home_url(), site_url(), $url);
+    return $url;
+});
 ?>
