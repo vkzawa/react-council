@@ -27,8 +27,10 @@ const Content = {
 	previewDataBySlug: (type, slug, wpnonce) =>
 		requests.getWithCredentials(`/wp-json/react-wp-rest/preview?type=${type}&slug=${slug}&_wpnonce=${wpnonce}&_embed`),
 	pageList: () =>
-		requests.get('/wp-json/react-wp-rest/pages/list')
-} 
+		requests.get('/wp-json/react-wp-rest/pages/list'),
+	meetingsList: (page, length) =>
+		requests.get(`/wp-json/cmm-committee/meetings/list?posts_per_page=${length}&page=${page}`),
+}
 
 export default {
 	Menus,

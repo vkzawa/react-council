@@ -9,7 +9,10 @@ const defaultState = {
 	},
 	menus: {},
 	lists: {
-		pages: []
+		pages: [],
+		meetings: {
+			upcoming: []
+		}
 	}
 }
 
@@ -45,6 +48,18 @@ export default (state = defaultState, action) => {
 				lists: {
 					...state.lists,
 					pages: action.payload
+				}
+			};
+
+		case 'LOAD_UPCOMING_MEETINGS_LIST':
+			return {
+				...state,
+				lists: {
+					...state.lists,
+					meetings: {
+						...state.lists.meetings,
+						upcoming: action.payload
+					}
 				}
 			};
 
