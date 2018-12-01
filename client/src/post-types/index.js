@@ -1,5 +1,5 @@
 export default [
-	'posts',
-	'pages',
-	'static-content'
+  'posts',
+  'pages',
+  'static-content'
 ];

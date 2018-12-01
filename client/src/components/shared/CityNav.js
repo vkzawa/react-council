@@ -1,11 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import LASeal from '../../images/la-seal.svg';
+import React from "react";
+import styled from "styled-components";
+import LASeal from "../../images/la-seal.svg";
 
 const CityNav = () => (
   <CityNavContainer>
     <Logo href="http://lacity.org" target="_blank">
-      <LogoImage><img src={LASeal} alt="Seal of the City of Los Angeles"/></LogoImage>
+      <LogoImage>
+        <img src={LASeal} alt="Seal of the City of Los Angeles" />
+      </LogoImage>
       <LogoText>LOS ANGELES</LogoText>
     </Logo>
 
@@ -13,7 +15,7 @@ const CityNav = () => (
       <MenuItemTag>311</MenuItemTag>
       <MenuItemLabel>City Services</MenuItemLabel>
     </MenuItem>
-    
+
     <MenuItem href="https://www.lacity.org/your-government/government-information/city-directory">
       <MenuItemTag>LA</MenuItemTag>
       <MenuItemLabel>City Directory</MenuItemLabel>
@@ -46,7 +48,7 @@ const LogoImage = styled.div`
 
 const LogoText = styled.div`
   font-size: 18px;
-  font-family: 'Oswald', 'Arial Black', sans-serif;
+  font-family: "Oswald", "Arial Black", sans-serif;
   font-weight: 400;
   color: white;
   margin-left: 5px;
@@ -54,7 +56,7 @@ const LogoText = styled.div`
 
 const MenuItem = styled.a`
   display: flex;
-  font-family: Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+  font-family: Arial, Helvetica, "Nimbus Sans L", sans-serif;
   text-decoration: none;
   align-items: center;
   margin-left: 15px;

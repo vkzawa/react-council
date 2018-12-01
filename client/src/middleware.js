@@ -1,27 +1,25 @@
 const promiseMiddleware = store => next => action => {
-	if (isPromise(action.payload)) {
-		action.payload.then(
-			res => {
-				action.payload = res;
-				store.dispatch(action);
-			},
-			error => {
-				action.error = true;
-				action.payload = error;
-				console.warn(error);
-			}
-		);
+  if (isPromise(action.payload)) {
+    action.payload.then(
+      res => {
+        action.payload = res;
+        store.dispatch(action);
+      },
+      error => {
+        action.error = true;
+        action.payload = error;
+        console.warn(error);
+      }
+    );
 
-		return;
-	}
+    return;
+  }
 
-	next(action);
+  next(action);
 };
 
 function isPromise(v) {
-	return v && typeof v.then === 'function';
+  return v && typeof v.then === "function";
 }
 
-export {
-	promiseMiddleware
-};
+export { promiseMiddleware };

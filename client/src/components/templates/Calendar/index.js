@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import he from "he";
+// import MobileCalendar from 'react-calendar-mobile';
+// import DesktopCalendar from 'react-big-calendar';
 
 // Material UI
 import Typography from "@material-ui/core/Typography";
@@ -8,9 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import ContentBlock from "../../utilities/ContentBlock";
 import WPContent from "../../utilities/WPContent";
 
-import "./index.css";
-
-class Default extends Component {
+class Calendar extends Component {
   render() {
     if (this.props.data) {
       let data = this.props.data;
@@ -49,4 +49,4 @@ const PageHeading = styled.div`
   }
 `;
 
-export default Default;
+export default Calendar;

@@ -1,23 +1,23 @@
-import React from 'react';
-import Loadable from 'react-loadable';
+import React from "react";
+import Loadable from "react-loadable";
 
 class AsyncChunks {
-	chunksQueue = [];
+  chunksQueue = [];
 
-	appendToQueue = chunk => this.chunksQueue.push(chunk)
+  appendToQueue = chunk => this.chunksQueue.push(chunk);
 
-	generateChunk = (loader) => {
-		this.appendToQueue(loader);
-		return Loadable({ 
-			loader, 
-			loading: () => <div></div>
-		});
-	}
+  generateChunk = loader => {
+    this.appendToQueue(loader);
+    return Loadable({
+      loader,
+      loading: () => <div />
+    });
+  };
 
-	loadChunks = () => {
-		this.chunksQueue.forEach(loader => loader());
-		this.chunksQueue = [];
-	}
+  loadChunks = () => {
+    this.chunksQueue.forEach(loader => loader());
+    this.chunksQueue = [];
+  };
 }
 
 export default new AsyncChunks();

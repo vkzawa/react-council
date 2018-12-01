@@ -1,32 +1,36 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import SiteNavItemsContainer from './SiteNavItemsContainer';
+import React, { Component } from "react";
+import styled from "styled-components";
+import SiteNavItemsContainer from "./SiteNavItemsContainer";
 
 // Material UI
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
 
 class MobileNav extends Component {
   state = {
     mobileMenuOpen: false
   };
 
-  toggleMobileMenu = (open) => () => {
+  toggleMobileMenu = open => () => {
     this.setState({
-      mobileMenuOpen: open,
+      mobileMenuOpen: open
     });
   };
 
   render() {
     return (
       <React.Fragment>
-        <MobileMenuButton variant="fab" color="primary" onClick={this.toggleMobileMenu(true)}>
+        <MobileMenuButton
+          variant="fab"
+          color="primary"
+          onClick={this.toggleMobileMenu(true)}
+        >
           <MenuIcon />
         </MobileMenuButton>
 
@@ -46,7 +50,9 @@ class MobileNav extends Component {
 
             <List>
               <ListItem>
-                <ListItemIcon><SearchIcon /></ListItemIcon>
+                <ListItemIcon>
+                  <SearchIcon />
+                </ListItemIcon>
                 {/* <QuickSearch /> */}
               </ListItem>
             </List>

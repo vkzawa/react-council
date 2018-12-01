@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 // Material
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import { withStyles } from "@material-ui/core/styles";
+import green from "@material-ui/core/colors/green";
 
-import Grid from '@material-ui/core/Grid';
-import CardActionArea from '@material-ui/core/CardActionArea';
+import Grid from "@material-ui/core/Grid";
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 const HeroButtons = ({ buttons }) => (
   <HeroButtonGroup>
@@ -29,7 +29,7 @@ const HeroButtons = ({ buttons }) => (
 );
 
 const HeroButtonGroup = styled.div`
-  ${'' /* padding: 8px; */}
+  ${"" /* padding: 8px; */}
 `;
 
 const HeroButtonsContainer = styled(CardActionArea)`
@@ -43,7 +43,10 @@ const HeroButtonLabel = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(rgba(51,190,180,0.85) 50%, rgba(51,190,180,1) 100%);
+  background: linear-gradient(
+    rgba(51, 190, 180, 0.85) 50%,
+    rgba(51, 190, 180, 1) 100%
+  );
   display: flex;
   padding: 10px;
   line-height: 1;
@@ -52,7 +55,7 @@ const HeroButtonLabel = styled.div`
   & > span {
     color: white;
     font-weight: bold;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
   }
 `;

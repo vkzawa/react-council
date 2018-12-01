@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import UpcomingMeetings from '../../containers/UpcomingMeetings';
-import HeroSlideshow from '../../HeroSlideshow';
-import HeroButtons from '../../HeroButtons';
-import ContentBlock from '../../utilities/ContentBlock';
-import WPContent from '../../utilities/WPContent';
+import React, { Component } from "react";
+import styled from "styled-components";
+import UpcomingMeetings from "../../containers/UpcomingMeetings";
+import HeroSlideshow from "../../HeroSlideshow";
+import HeroButtons from "../../HeroButtons";
+import ContentBlock from "../../utilities/ContentBlock";
+import WPContent from "../../utilities/WPContent";
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 class Home extends Component {
-
   render() {
     if (this.props.data) {
       const data = this.props.data;
@@ -19,10 +18,8 @@ class Home extends Component {
       return (
         <React.Fragment>
           <HomeHero>
-            {data.acf.slides &&
-              <HeroSlideshow slides={data.acf.slides} />
-            }
-            {data.acf.buttons &&
+            {data.acf.slides && <HeroSlideshow slides={data.acf.slides} />}
+            {data.acf.buttons && (
               <HeroBlockContent>
                 <Grid container>
                   <Grid item xs={12}>
@@ -30,7 +27,7 @@ class Home extends Component {
                   </Grid>
                 </Grid>
               </HeroBlockContent>
-            }
+            )}
           </HomeHero>
           <HomeContent>
             <Grid container spacing={16}>
@@ -53,24 +50,24 @@ class Home extends Component {
     }
 
     return null;
-  };
-};
+  }
+}
 
 const HomeHero = styled.div`
   overflow: hidden;
   position: relative;
-`
+`;
 
 const HomeContent = styled.article`
   padding: 16px;
-`
+`;
 
 const HeroBlockContent = styled.div`
-  background: linear-gradient(rgba(255,255,255,0), #fafafa 80%);
+  background: linear-gradient(rgba(255, 255, 255, 0), #fafafa 80%);
   padding: 16px;
   position: absolute;
   bottom: 0;
-  left:0;
+  left: 0;
   right: 0;
   z-index: 1;
 `;
