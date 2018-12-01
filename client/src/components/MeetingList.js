@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import he from "he";
 
 // Icons
@@ -33,15 +32,15 @@ class MeetingList extends React.Component {
     return (
       <React.Fragment>
         {this.props.meetings.map((meeting, index) => {
-          const { meetingListExpanded } = this.state;
-          const startDate = parseInt(meeting.details.meetingDate * 1000);
-          const openTime = parseInt(meeting.details.meetingOpen * 1000);
-          const startTime = parseInt(meeting.details.meetingStart * 1000);
+          const startDate = parseInt(meeting.details.meetingDate * 1000, 10);
+          const openTime = parseInt(meeting.details.meetingOpen * 1000, 10);
+          const startTime = parseInt(meeting.details.meetingStart * 1000, 10);
 
           return (
             <ExpansionPanel
               expanded={meetingListExpanded === index}
               onChange={this.handleChange(index)}
+              key={meeting.id}
             >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Grid container alignItems="center" spacing={8}>
@@ -50,11 +49,11 @@ class MeetingList extends React.Component {
                       {he.decode(meeting.title)}
                     </Typography>
                     <Typography variant="caption">
-                      <Moment UTC format="dddd">
+                      <Moment format="dddd">
                         {startDate}
                       </Moment>{" "}
                       at{" "}
-                      <Moment UTC format="hh:mmA">
+                      <Moment format="hh:mmA">
                         {startTime}
                       </Moment>
                     </Typography>
@@ -65,12 +64,12 @@ class MeetingList extends React.Component {
                       variant="caption"
                       align="center"
                     >
-                      <Moment UTC format="MMM">
+                      <Moment format="MMM">
                         {startDate}
                       </Moment>
                     </Typography>
-                    <Typography component="div" variant="title" align="center">
-                      <Moment UTC format="DD">
+                    <Typography component="div" variant="h6" align="center">
+                      <Moment format="DD">
                         {startDate}
                       </Moment>
                     </Typography>
@@ -81,7 +80,7 @@ class MeetingList extends React.Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <Typography variant="body2">
-                      <Moment UTC format="MMMM Do, YYYY">
+                      <Moment format="MMMM Do, YYYY">
                         {startDate}
                       </Moment>
                     </Typography>
@@ -90,7 +89,7 @@ class MeetingList extends React.Component {
                   <Grid item xs={6}>
                     <Typography variant="caption"> Doors open: </Typography>
                     <Typography variant="body2">
-                      <Moment UTC format="hh:mmA">
+                      <Moment format="hh:mmA">
                         {openTime}
                       </Moment>
                     </Typography>
@@ -99,7 +98,7 @@ class MeetingList extends React.Component {
                   <Grid item xs={6}>
                     <Typography variant="caption">Starts at:</Typography>
                     <Typography variant="body2">
-                      <Moment UTC format="hh:mmA">
+                      <Moment format="hh:mmA">
                         {startTime}
                       </Moment>
                     </Typography>
@@ -121,7 +120,7 @@ class MeetingList extends React.Component {
                   </Grid>
                 </Grid>
 
-                <Typography variant="subheading">
+                <Typography variant="subtitle1">
                   {meeting.details.location}
                 </Typography>
               </ExpansionPanelDetails>
@@ -138,7 +137,5 @@ class MeetingList extends React.Component {
     );
   }
 }
-
-const MeetingListStyles = styled.div``;
 
 export default MeetingList;

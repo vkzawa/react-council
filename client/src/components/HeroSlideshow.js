@@ -1,13 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Parallax from "react-plx";
-import Grid from "@material-ui/core/Grid";
-
-// import ExploreButtonsContainer from './ExploreButtonsContainer';
 
 const HeroSlideshow = ({ slides }) => {
   const sliderSettings = {
@@ -49,7 +45,7 @@ const HeroSlideshow = ({ slides }) => {
   return (
     <Slider {...sliderSettings}>
       {slides.map(slide => (
-        <SlideContainer>
+        <SlideContainer key={slide.slideImage}>
           <Parallax
             className="HeroBlock-backgroundContainer"
             parallaxData={sliderParallaxSettings}

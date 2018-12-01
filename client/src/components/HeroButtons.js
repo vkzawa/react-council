@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 
-// Material
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import { withStyles } from "@material-ui/core/styles";
-import green from "@material-ui/core/colors/green";
-
+// Material UI
 import Grid from "@material-ui/core/Grid";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
@@ -14,7 +9,7 @@ const HeroButtons = ({ buttons }) => (
   <HeroButtonGroup>
     <Grid container spacing={8}>
       {buttons.map(button => (
-        <Grid item xs={6} sm={4} lg={2}>
+        <Grid key={button.url} item xs={6} sm={4} lg={2}>
           <a href={button.url}>
             <HeroButtonsContainer>
               <HeroButtonLabel>
