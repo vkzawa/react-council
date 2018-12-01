@@ -8,8 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import ContentBlock from "../../utilities/ContentBlock";
 import WPContent from "../../utilities/WPContent";
 
-import "./index.css";
-
 class Default extends Component {
   render() {
     if (this.props.data) {

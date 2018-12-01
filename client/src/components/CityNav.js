@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LASeal from "../../images/la-seal.svg";
+import LASeal from "../images/la-seal.svg";
 
 const CityNav = () => (
   <CityNavContainer>

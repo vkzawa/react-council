@@ -12,7 +12,7 @@ import queryString from "qs";
 
 import AsyncChunks from "../../utilities/AsyncLoader";
 import canUseDom from "../../../utilities/canUseDom";
-import Footer from "../../layout/Footer";
+import Footer from "../../Footer";
 import api from "../../../api";
 
 const AsyncDefault = AsyncChunks.generateChunk(() =>

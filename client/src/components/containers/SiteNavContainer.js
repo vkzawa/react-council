@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import api from "../../api";
-import SiteNavItems from "./SiteNavItems";
+import SiteNav from "../SiteNav";
 
-class SiteNavItemsContainer extends Component {
+class SiteNavContainer extends Component {
   componentDidMount() {
     this.props.loadMenu(api.Menus.bySlug("main"));
   }
 
   render() {
     if (this.props.mainMenu) {
-      return <SiteNavItems menu={this.props.mainMenu} />;
+      return <SiteNav menu={this.props.mainMenu} />;
     }
 
     return null;
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SiteNavItemsContainer);
+)(SiteNavContainer);

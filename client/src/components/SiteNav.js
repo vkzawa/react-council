@@ -45,7 +45,7 @@ const iconMap = {
   workIcon: WorkOutlineIcon
 };
 
-class SiteNavItems extends Component {
+class SiteNav extends Component {
   constructor(props) {
     super(props);
 
@@ -183,4 +183,4 @@ const NestedToggle = styled(IconButton)`
   padding: 6px !important;
 `;
 
-export default SiteNavItems;
+export default SiteNav;

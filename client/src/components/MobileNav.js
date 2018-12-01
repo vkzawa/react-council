@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import SiteNavItemsContainer from "./SiteNavItemsContainer";
+import SiteNavContainer from "./containers/SiteNavContainer";
 
 // Material UI
 import List from "@material-ui/core/List";
@@ -43,7 +43,7 @@ class MobileNav extends Component {
         >
           <div onClick={this.toggleMobileMenu(false)}>
             <List>
-              <SiteNavItemsContainer />
+              <SiteNavContainer />
             </List>
 
             <Divider />

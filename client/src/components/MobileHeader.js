@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { SocialIcon } from "react-social-icons";
-import CESPNCLogo from "../../images/cespnc-logo.jpg";
+import CESPNCLogo from "../images/cespnc-logo.jpg";
 
 // Material UI
 import Toolbar from "@material-ui/core/Toolbar";

@@ -5,11 +5,11 @@ import styled from "styled-components";
 
 import AsyncChunks from "./components/utilities/AsyncLoader";
 import NotFound from "./components/templates/NotFound";
-import SiteSidebar from "./components/layout/SiteSidebar";
-import MobileHeader from "./components/layout/MobileHeader";
-import MobileNav from "./components/layout/MobileNav";
-import CityNav from "./components/shared/CityNav";
-import Footer from "./components/layout/Footer";
+import SiteSidebar from "./components/SiteSidebar";
+import MobileHeader from "./components/MobileHeader";
+import MobileNav from "./components/MobileNav";
+import CityNav from "./components/CityNav";
+import Footer from "./components/Footer";
 import LoadTemplate from "./components/templates/LoadTemplate";
 import api from "./api";
 

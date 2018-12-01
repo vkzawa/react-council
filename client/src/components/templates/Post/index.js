@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import ContentBlock from "../../utilities/ContentBlock";
 
-import "./index.css";
-
 class Post extends Component {
   render() {
     if (this.props.data) {
