@@ -45,7 +45,7 @@ class App extends Component {
               <LoadTemplate
               {...props}
               template="post"
-              type="post" />
+              type="posts" />
             }
             exact
             path="/post/:slug"/>,
