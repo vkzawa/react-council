@@ -1,22 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
-import CESPNCLogo from "../images/cespnc-logo.jpg";
 
 // Material UI
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 
+import CESPNCLogo from "../images/cespnc-logo.jpg";
+
 const MobileHeader = () => (
   <ToolbarStyles>
     <Grid container alignItems="center" justify="space-between">
       <Grid item>
-        <SiteLogo>
-          <img
-            src={CESPNCLogo}
-            alt="Central San Pedro Neighborhood Council Logo"
-          />
-        </SiteLogo>
+        <NavLink to="/">
+          <SiteLogo>
+            <img
+              src={CESPNCLogo}
+              alt="Central San Pedro Neighborhood Council Logo"
+            />
+          </SiteLogo>
+        </NavLink>
       </Grid>
       <Grid item>
         <SiteLogo>
