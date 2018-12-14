@@ -16,15 +16,7 @@ const HeroSlideshow = ({ slides }) => {
     autoplaySpeed: 5000,
     easing: "ease-in-out",
     arrows: false,
-    fade: true,
-    responsive: [
-      {
-        breakpoint: 960,
-        settings: {
-          fade: false
-        }
-      }
-    ]
+    fade: true
   };
 
   const sliderParallaxSettings = [
