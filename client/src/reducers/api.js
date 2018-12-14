@@ -15,7 +15,8 @@ const defaultState = {
     },
     meetings: {
       upcoming: []
-    }
+    },
+    events: []
   }
 };
 
@@ -60,6 +61,15 @@ export default (state = defaultState, action) => {
             ...state.lists.meetings,
             upcoming: action.payload
           }
+        }
+      };
+
+    case "LOAD_CALENDAR_EVENTS":
+      return {
+        ...state,
+        lists: {
+          ...state.lists,
+          events: action.payload.events
         }
       };
 

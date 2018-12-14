@@ -26,10 +26,15 @@ const AsyncPost = AsyncChunks.generateChunk(() =>
   import(/* webpackChunkName: "Post" */ "../Post")
 );
 
+const AsyncCalendar = AsyncChunks.generateChunk(() =>
+  import(/* webpackChunkName: "Calendar" */ "../Calendar")
+);
+
 const templates = {
   home: AsyncHome,
   default: AsyncDefault,
-  post: AsyncPost
+  post: AsyncPost,
+  calendar: AsyncCalendar
 };
 
 const mapStateToProps = state => ({

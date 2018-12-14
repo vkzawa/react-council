@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 
 import ContentBlock from "../../utilities/ContentBlock";
 import WPContent from "../../utilities/WPContent";
+import CalendarData from "../../containers/CalendarData";
 
 class Calendar extends Component {
   render() {
@@ -26,6 +27,8 @@ class Calendar extends Component {
               <ContentBlock content={data.content.rendered} />
             </WPContent>
           </Typography>
+
+          <CalendarData />
         </article>
       );
     }

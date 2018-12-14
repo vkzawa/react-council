@@ -33,9 +33,9 @@ const Content = {
       `/wp-json/react-wp-rest/preview?type=${type}&slug=${slug}&_wpnonce=${wpnonce}&_embed`
     ),
   pageList: () => requests.get("/wp-json/react-wp-rest/pages/list"),
-  meetingsList: (page, length) =>
+  eventsList: (page, length, startDate, endDate) =>
     requests.get(
-      `/wp-json/cmm-committee/meetings/list?posts_per_page=${length}&page=${page}`
+      `/wp-json/tribe/events/v1/events/?page=${page}&per_page=${length}&start_date=${startDate}&end_date=${endDate}`
     )
 };
 
