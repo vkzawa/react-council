@@ -46,7 +46,7 @@ class Home extends Component {
               </Grid>
 
               <Grid item xs={12} sm={6} md={5}>
-                <Typography variant="h6">Upcoming Meetings</Typography>
+                <Typography variant="h6">Upcoming Meetings & Events</Typography>
                 <UpcomingMeetings />
               </Grid>
             </Grid>
