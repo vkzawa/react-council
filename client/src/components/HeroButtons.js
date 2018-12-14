@@ -9,7 +9,7 @@ const HeroButtons = ({ buttons }) => (
   <HeroButtonGroup>
     <Grid container spacing={8}>
       {buttons.map(button => (
-        <Grid key={button.url} item xs={6} sm={4} lg={2}>
+        <Grid key={button.label + button.url} item xs={6} sm={4} lg={2}>
           <a href={button.url}>
             <HeroButtonsContainer>
               <HeroButtonLabel>
@@ -42,10 +42,11 @@ const HeroButtonLabel = styled.div`
     rgba(51, 190, 180, 0.85) 50%,
     rgba(51, 190, 180, 1) 100%
   );
+  border-radius: 4px;
   display: flex;
   padding: 10px;
   line-height: 1;
-  font-size: 16px;
+  font-size: 14px;
 
   & > span {
     color: white;
