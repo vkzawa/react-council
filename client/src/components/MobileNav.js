@@ -39,7 +39,7 @@ class MobileNav extends Component {
           anchor="bottom"
           open={this.state.mobileMenuOpen}
           onClose={this.toggleMobileMenu(false)}
-          opOpen={this.toggleMobileMenu(true)}
+          onOpen={this.toggleMobileMenu(true)}
         >
           <div onClick={this.toggleMobileMenu(false)}>
             <List>
@@ -68,6 +68,7 @@ const MobileMenuButton = styled(Button)`
     position: fixed;
     right: 16px;
     bottom: 16px;
+    z-index: 999;
   }
 `;
 
