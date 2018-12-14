@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import styled from "styled-components";
 
-class Footer extends Component {
-  render() {
-    return <footer className="footer" />;
-  }
-}
+const Footer = () => (
+  <FooterStyles>
+    © 2013-2018 Central San Pedro Neighborhood Council. All rights reserved.
+  </FooterStyles>
+);
+
+const FooterStyles = styled.div``;
 
 export default Footer;

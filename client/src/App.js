@@ -144,6 +144,7 @@ class App extends Component {
                 <MobileNav />
               </Hidden>
               <Switch>{this.buildRoutes(this.props.pageList)}</Switch>
+              <Footer />
             </AppLayoutMain>
           </AppLayout>
           <Footer />
