@@ -5,12 +5,17 @@ import MeetingList from "../MeetingList";
 
 class UpcomingMeetings extends Component {
   componentDidMount() {
-    this.props.loadMeetings(api.Content.meetingsList(1, -1));
+    this.props.loadMeetings(api.Content.eventsList(1, 10));
   }
 
   render() {
     if (this.props.meetings) {
-      return <MeetingList meetings={this.props.meetings} />;
+      return (
+        <MeetingList
+          meetings={this.props.meetings.events}
+          emptyLabel="No Upcoming Meetings"
+        />
+      );
     }
 
     return null;

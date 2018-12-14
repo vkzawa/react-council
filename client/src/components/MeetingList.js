@@ -1,5 +1,6 @@
 import React from "react";
 import he from "he";
+import Moment from "react-moment";
 
 // Icons
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -13,7 +14,8 @@ import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Moment from "react-moment";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 class MeetingList extends React.Component {
   state = {
@@ -28,13 +30,25 @@ class MeetingList extends React.Component {
 
   render() {
     const { meetingListExpanded } = this.state;
+    const { meetings } = this.props;
+    const emptyLabel = this.props.emptyLabel || "No meetings found.";
+
+    if (!meetings || meetings.length === 0) {
+      return (
+        <ExpansionPanel disabled>
+          <ExpansionPanelSummary>
+            <Typography variant="subtitle2">{emptyLabel}</Typography>
+          </ExpansionPanelSummary>
+        </ExpansionPanel>
+      );
+    }
 
     return (
       <React.Fragment>
-        {this.props.meetings.map((meeting, index) => {
-          const startDate = parseInt(meeting.details.meetingDate * 1000, 10);
-          const openTime = parseInt(meeting.details.meetingOpen * 1000, 10);
-          const startTime = parseInt(meeting.details.meetingStart * 1000, 10);
+        {meetings.map((meeting, index) => {
+          const startDate = meeting.start_date;
+          const openTime = meeting.start_date;
+          const startTime = meeting.start_date;
 
           return (
             <ExpansionPanel
@@ -49,13 +63,8 @@ class MeetingList extends React.Component {
                       {he.decode(meeting.title)}
                     </Typography>
                     <Typography variant="caption">
-                      <Moment format="dddd">
-                        {startDate}
-                      </Moment>{" "}
-                      at{" "}
-                      <Moment format="hh:mmA">
-                        {startTime}
-                      </Moment>
+                      <Moment format="dddd">{startDate}</Moment> at{" "}
+                      <Moment format="hh:mmA">{startTime}</Moment>
                     </Typography>
                   </Grid>
                   <Grid item xs={2}>
@@ -64,14 +73,10 @@ class MeetingList extends React.Component {
                       variant="caption"
                       align="center"
                     >
-                      <Moment format="MMM">
-                        {startDate}
-                      </Moment>
+                      <Moment format="MMM">{startDate}</Moment>
                     </Typography>
                     <Typography component="div" variant="h6" align="center">
-                      <Moment format="DD">
-                        {startDate}
-                      </Moment>
+                      <Moment format="DD">{startDate}</Moment>
                     </Typography>
                   </Grid>
                 </Grid>
@@ -80,27 +85,21 @@ class MeetingList extends React.Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <Typography variant="body2">
-                      <Moment format="MMMM Do, YYYY">
-                        {startDate}
-                      </Moment>
+                      <Moment format="MMMM Do, YYYY">{startDate}</Moment>
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
                     <Typography variant="caption"> Doors open: </Typography>
                     <Typography variant="body2">
-                      <Moment format="hh:mmA">
-                        {openTime}
-                      </Moment>
+                      <Moment format="hh:mmA">{openTime}</Moment>
                     </Typography>
                   </Grid>
 
                   <Grid item xs={6}>
                     <Typography variant="caption">Starts at:</Typography>
                     <Typography variant="body2">
-                      <Moment format="hh:mmA">
-                        {startTime}
-                      </Moment>
+                      <Moment format="hh:mmA">{startTime}</Moment>
                     </Typography>
                   </Grid>
                 </Grid>
@@ -108,21 +107,15 @@ class MeetingList extends React.Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <Typography variant="caption">
-                      <strong>{meeting.details.venueName}</strong>
+                      <strong>{meeting.venue.venue}</strong>
                       <br />
-                      {meeting.details.venueAddress1}
+                      {meeting.venue.address}
                       <br />
-                      {meeting.details.venueAddress2 &&
-                        meeting.details.venueAddress2}
-                      {meeting.details.venueCity}, {meeting.details.venueState}{" "}
-                      {meeting.details.venueZip}
+                      {meeting.venue.city}, {meeting.venue.state}{" "}
+                      {meeting.venue.zip}
                     </Typography>
                   </Grid>
                 </Grid>
-
-                <Typography variant="subtitle1">
-                  {meeting.details.location}
-                </Typography>
               </ExpansionPanelDetails>
               <Divider />
               <ExpansionPanelActions>
