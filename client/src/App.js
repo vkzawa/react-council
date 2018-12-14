@@ -109,13 +109,13 @@ class App extends Component {
           main: "#337ab0"
         },
         secondary: {
-          main: yellow[900]
+          main: "#18bbb0"
         }
       },
       overrides: {
         MuiBackdrop: {
           root: {
-            backgroundColor: `${fade(blue[900], 0.9)}`
+            backgroundColor: "#18bbb0"
           }
         }
       }
@@ -124,13 +124,14 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <div className={`app`}>
+        <AppWindow>
           <Hidden smDown>
             <AppHeader>
               {" "}
               <CityNav />{" "}
             </AppHeader>
           </Hidden>
+
           <AppLayout>
             <Hidden smDown>
               <AppLayoutAside>
@@ -147,25 +148,32 @@ class App extends Component {
               <Footer />
             </AppLayoutMain>
           </AppLayout>
-          <Footer />
-        </div>
+        </AppWindow>
       </MuiThemeProvider>
     );
   }
 }
+
+const AppWindow = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 const AppHeader = styled.div``;
 
 const AppLayout = styled.div`
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  align-items: stretch;
+  flex-grow: 1;
 `;
 
 const AppLayoutMain = styled.div`
   flex-grow: 1;
   width: calc(100% - 260px);
   overflow: hidden;
+  padding-bottom: 64px;
 `;
 
 const AppLayoutAside = styled.div`
