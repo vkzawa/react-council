@@ -10,6 +10,9 @@ const defaultState = {
   menus: {},
   lists: {
     pages: [],
+    posts: {
+      hotTopics: []
+    },
     meetings: {
       upcoming: []
     }
@@ -56,6 +59,18 @@ export default (state = defaultState, action) => {
           meetings: {
             ...state.lists.meetings,
             upcoming: action.payload
+          }
+        }
+      };
+
+    case "LOAD_HOT_TOPICS_LIST":
+      return {
+        ...state,
+        lists: {
+          ...state.lists,
+          posts: {
+            ...state.lists.posts,
+            hotTopics: action.payload
           }
         }
       };

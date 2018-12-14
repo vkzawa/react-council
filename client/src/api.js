@@ -24,6 +24,10 @@ const Content = {
   data: type => requests.get(`/wp-json/wp/v2/${type}?_embed`),
   dataBySlug: (type, slug) =>
     requests.get(`/wp-json/wp/v2/${type}?slug=${slug}&_embed`),
+  dataByCategory: (type, categories, params) =>
+    requests.get(
+      `/wp-json/wp/v2/${type}?categories=${categories}&${params}&_embed`
+    ),
   previewDataBySlug: (type, slug, wpnonce) =>
     requests.getWithCredentials(
       `/wp-json/react-wp-rest/preview?type=${type}&slug=${slug}&_wpnonce=${wpnonce}&_embed`

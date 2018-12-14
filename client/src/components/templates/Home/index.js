@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import UpcomingMeetings from "../../containers/UpcomingMeetings";
+import HotTopicPosts from "../../containers/HotTopicPosts";
 import HeroSlideshow from "../../HeroSlideshow";
 import HeroButtons from "../../HeroButtons";
 import ContentBlock from "../../utilities/ContentBlock";
 import WPContent from "../../utilities/WPContent";
 
 // Material UI
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
@@ -37,6 +40,9 @@ class Home extends Component {
                     <ContentBlock content={data.content.rendered} />
                   </WPContent>
                 </Typography>
+
+                <Typography variant="h6">Latest News & Updates</Typography>
+                <HotTopicPosts />
               </Grid>
 
               <Grid item xs={12} sm={6} md={5}>
