@@ -17,9 +17,6 @@ import api from "./api";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Hidden from "@material-ui/core/Hidden";
-import blue from "@material-ui/core/colors/blue";
-import yellow from "@material-ui/core/colors/yellow";
-import { fade } from "@material-ui/core/styles/colorManipulator";
 
 const mapStateToProps = state => ({
   pageList: state.api.lists.pages
@@ -140,12 +137,16 @@ class App extends Component {
             </Hidden>
 
             <AppLayoutMain>
-              <Hidden mdUp>
-                <MobileHeader />
-                <MobileNav />
-              </Hidden>
-              <Switch>{this.buildRoutes(this.props.pageList)}</Switch>
-              <Footer />
+              <div className="AppLayoutMain-content">
+                <Hidden mdUp>
+                  <MobileHeader />
+                  <MobileNav />
+                </Hidden>
+                <Switch>{this.buildRoutes(this.props.pageList)}</Switch>
+              </div>
+              <div className="AppLayoutMain-footer">
+                <Footer />
+              </div>
             </AppLayoutMain>
           </AppLayout>
         </AppWindow>
@@ -173,7 +174,22 @@ const AppLayoutMain = styled.div`
   flex-grow: 1;
   width: calc(100% - 260px);
   overflow: hidden;
-  padding-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+
+  .AppLayoutMain-content {
+    flex-grow: 1;
+  }
+
+  .AppLayoutMain-footer {
+    background-color: #2e475d;
+  }
+
+  @media (max-width: 960px) {
+    .AppLayoutMain-footer {
+      padding-bottom: 64px;
+    }
+  }
 `;
 
 const AppLayoutAside = styled.div`

@@ -7,6 +7,9 @@ const Footer = () => (
   </FooterStyles>
 );
 
-const FooterStyles = styled.div``;
+const FooterStyles = styled.div`
+  color: white;
+  padding: 16px;
+`;
 
 export default Footer;

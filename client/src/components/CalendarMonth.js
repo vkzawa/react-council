@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import he from "he";
 import moment from "moment";
 import BigCalendar from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";

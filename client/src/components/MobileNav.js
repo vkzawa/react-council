@@ -7,7 +7,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
@@ -26,11 +26,7 @@ class MobileNav extends Component {
   render() {
     return (
       <React.Fragment>
-        <MobileMenuButton
-          variant="fab"
-          color="primary"
-          onClick={this.toggleMobileMenu(true)}
-        >
+        <MobileMenuButton color="primary" onClick={this.toggleMobileMenu(true)}>
           <MenuIcon />
         </MobileMenuButton>
 
@@ -63,7 +59,7 @@ class MobileNav extends Component {
   }
 }
 
-const MobileMenuButton = styled(Button)`
+const MobileMenuButton = styled(Fab)`
   && {
     position: fixed;
     right: 16px;

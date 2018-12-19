@@ -16,18 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import ContentBlock from "./utilities/ContentBlock";
 
 class PostList extends React.Component {
-  state = {
-    postListExpanded: "none"
-  };
-
-  handleChange = panel => (event, expanded) => {
-    this.setState({
-      postListExpanded: expanded ? panel : false
-    });
-  };
-
   render() {
-    const { postListExpanded } = this.state;
     const { posts } = this.props;
 
     if (!posts || posts.length === 0) {
