@@ -1,6 +1,7 @@
 import React from "react";
 import he from "he";
 import Moment from "react-moment";
+import { Link } from "react-router-dom";
 
 // Icons
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -50,8 +51,8 @@ class MeetingList extends React.Component {
 
           return (
             <ExpansionPanel
-              expanded={meetingListExpanded === index}
-              onChange={this.handleChange(index)}
+              expanded={meetingListExpanded === meeting.id}
+              onChange={this.handleChange(meeting.id)}
               key={meeting.id}
             >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -118,7 +119,16 @@ class MeetingList extends React.Component {
               <Divider />
               <ExpansionPanelActions>
                 <Button size="small" color="primary">
-                  View Agenda
+                  Open Agenda
+                </Button>
+
+                <Button
+                  size="small"
+                  color="secondary"
+                  component={Link}
+                  to={meeting.url}
+                >
+                  View More Details
                 </Button>
               </ExpansionPanelActions>
             </ExpansionPanel>

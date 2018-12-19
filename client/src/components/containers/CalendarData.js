@@ -64,16 +64,21 @@ class CalendarData extends Component {
 
       return (
         <React.Fragment>
-          <CalendarMonth events={this.props.events} accessors={accessors} />
+          <CalendarMonth
+            events={this.props.events}
+            accessors={accessors}
+            onRangeChange={this.handleChangeMonth}
+            onSelectSlot={this.handleSelectDay}
+          />
           <MeetingList
             meetings={this.props.events}
-            emptyLabel="No Upcoming Events"
+            emptyLabel="No Events This Month"
           />
         </React.Fragment>
       );
     }
 
-    return null;
+    return <CalendarMonth />;
   }
 }
 
