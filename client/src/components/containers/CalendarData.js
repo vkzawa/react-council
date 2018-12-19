@@ -15,9 +15,42 @@ class CalendarData extends Component {
       .format("YYYY-MM-DD hh:mm");
 
     this.props.loadEvents(
-      api.Content.eventsList(1, 10, startOfMonth, endOfMonth)
+      api.Content.eventsList({
+        page: 1,
+        per_page: 100,
+        start_date: startOfMonth,
+        end_date: endOfMonth
+      })
     );
   }
+
+  handleChangeMonth = range => {
+    const startOfMonth = moment(range.start).format("YYYY-MM-DD hh:mm");
+    const endOfMonth = moment(range.end).format("YYYY-MM-DD hh:mm");
+
+    this.props.loadEvents(
+      api.Content.eventsList({
+        page: 1,
+        per_page: 100,
+        start_date: startOfMonth,
+        end_date: endOfMonth
+      })
+    );
+  };
+
+  handleSelectDay = slot => {
+    const startOfMonth = moment(slot.start).format("YYYY-MM-DD hh:mm");
+    const endOfMonth = moment(slot.end).format("YYYY-MM-DD hh:mm");
+
+    this.props.loadEvents(
+      api.Content.eventsList({
+        page: 1,
+        per_page: 100,
+        start_date: startOfMonth,
+        end_date: endOfMonth
+      })
+    );
+  };
 
   render() {
     if (this.props.events) {

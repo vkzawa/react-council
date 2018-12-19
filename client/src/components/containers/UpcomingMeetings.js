@@ -5,7 +5,12 @@ import MeetingList from "../MeetingList";
 
 class UpcomingMeetings extends Component {
   componentDidMount() {
-    this.props.loadMeetings(api.Content.eventsList(1, 10));
+    this.props.loadMeetings(
+      api.Content.eventsList({
+        page: 1,
+        per_page: 10
+      })
+    );
   }
 
   render() {
