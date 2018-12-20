@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import he from "he";
 import moment from "moment";
 import BigCalendar from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -9,18 +10,23 @@ class CalendarMonth extends React.Component {
     const { events, accessors } = this.props;
     const localizer = BigCalendar.momentLocalizer(moment);
 
+    const decodedEvents = events.reduce((events, event) => {
+      let eventObject = event;
+      eventObject.title = he.decode(eventObject.title);
+      events = [...events, eventObject];
+      return events;
+    }, []);
+
     return (
       <CalendarMonthStyles>
         <BigCalendar
-          selectable
           localizer={localizer}
-          events={events}
+          events={decodedEvents}
           {...accessors}
           views={{ month: true }}
           onRangeChange={range => {
             this.props.onRangeChange(range);
           }}
-          // onSelectEvent={event => alert(event.title)}
           onSelectSlot={slotInfo => {
             this.props.onSelectSlot(slotInfo);
           }}

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import api from "../../api";
+import { normalize } from "normalizr";
+import * as schema from "../../schemas";
 import CalendarMonth from "../CalendarMonth";
 import MeetingList from "../MeetingList";
 
@@ -53,7 +55,9 @@ class CalendarData extends Component {
   };
 
   render() {
-    if (this.props.events) {
+    const { events } = this.props;
+
+    if (events) {
       const accessors = {
         id: "id",
         titleAccessor: "title",
@@ -65,30 +69,39 @@ class CalendarData extends Component {
       return (
         <React.Fragment>
           <CalendarMonth
-            events={this.props.events}
+            events={events}
             accessors={accessors}
             onRangeChange={this.handleChangeMonth}
             onSelectSlot={this.handleSelectDay}
           />
-          <MeetingList
-            meetings={this.props.events}
-            emptyLabel="No Events This Month"
-          />
+          <MeetingList meetings={events} emptyLabel="No Events This Month" />
         </React.Fragment>
       );
     }
 
-    return <CalendarMonth />;
+    return <div>No Events</div>;
   }
 }
 
-const mapStateToProps = state => ({
-  events: state.api.lists.events
-});
+// const mapStateToProps = state => ({
+//   events: state.api.lists.calendarEvents
+// });
+const mapStateToProps = state => {
+  return {
+    events: state.api.lists.calendarEvents.reduce((events, event) => {
+      events = [...events, state.api.data.events[event]];
+      return events;
+    }, [])
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  loadEvents: events =>
-    dispatch({ type: "LOAD_CALENDAR_EVENTS", payload: events })
+  loadEvents: response => {
+    dispatch({
+      type: "LOAD_CALENDAR_EVENTS",
+      payload: response
+    });
+  }
 });
 
 export default connect(

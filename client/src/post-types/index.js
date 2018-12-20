@@ -1,5 +1,1 @@
-export default [
-  'posts',
-  'pages',
-  'static-content'
-];
+export default ["posts", "pages", "static-content", "events"];

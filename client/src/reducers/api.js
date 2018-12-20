@@ -1,11 +1,14 @@
 import { arrayToObject } from "../utilities/convertData";
 import postTypes from "../post-types";
+import { normalize } from "normalizr";
+import * as schema from "../schemas";
 
 const postTypeDefaultState = arrayToObject(postTypes);
 
 const defaultState = {
   data: {
-    ...postTypeDefaultState
+    ...postTypeDefaultState,
+    users: {}
   },
   menus: {},
   lists: {
@@ -16,7 +19,7 @@ const defaultState = {
     meetings: {
       upcoming: []
     },
-    events: []
+    calendarEvents: []
   }
 };
 
@@ -65,11 +68,19 @@ export default (state = defaultState, action) => {
       };
 
     case "LOAD_CALENDAR_EVENTS":
+      let normalizedEvents = normalize(action.payload.events, schema.eventList);
       return {
         ...state,
+        data: {
+          ...state.data,
+          events: {
+            ...state.data.events,
+            ...normalizedEvents.entities.events
+          }
+        },
         lists: {
           ...state.lists,
-          events: action.payload.events
+          calendarEvents: normalizedEvents.result
         }
       };
 
