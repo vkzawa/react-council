@@ -5,7 +5,7 @@ class ContentBlock extends Component {
     return (
       <div
         className="content-block"
-        dangerouslySetInnerHTML={{ __html: this.props.content || "No HTML" }}
+        dangerouslySetInnerHTML={{ __html: this.props.content || "" }}
       />
     );
   }

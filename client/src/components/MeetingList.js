@@ -2,6 +2,7 @@ import React from "react";
 import he from "he";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
+import Parse from "url-parse";
 
 // Icons
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -45,6 +46,8 @@ class MeetingList extends React.Component {
     return (
       <React.Fragment>
         {meetings.map((meeting, index) => {
+          const meetingUrl = Parse(meeting.url);
+          const relativeUrl = meetingUrl.pathname;
           const startDate = meeting.start_date;
           const openTime = meeting.start_date;
           const startTime = meeting.start_date;
@@ -126,7 +129,7 @@ class MeetingList extends React.Component {
                   size="small"
                   color="secondary"
                   component={Link}
-                  to={meeting.url}
+                  to={relativeUrl}
                 >
                   View More Details
                 </Button>
