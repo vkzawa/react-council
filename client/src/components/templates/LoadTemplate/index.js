@@ -26,6 +26,10 @@ const AsyncPost = AsyncChunks.generateChunk(() =>
   import(/* webpackChunkName: "Post" */ "../Post")
 );
 
+const AsyncEvent = AsyncChunks.generateChunk(() =>
+  import(/* webpackChunkName: "Post" */ "../Event")
+);
+
 const AsyncCalendar = AsyncChunks.generateChunk(() =>
   import(/* webpackChunkName: "Calendar" */ "../Calendar")
 );
@@ -34,6 +38,7 @@ const templates = {
   home: AsyncHome,
   default: AsyncDefault,
   post: AsyncPost,
+  event: AsyncEvent,
   calendar: AsyncCalendar
 };
 
@@ -87,14 +92,21 @@ class LoadTemplate extends Component {
   }
 
   fetchData() {
-    if (!this.props.data[this.props.type][this.state.slug]) {
+    if (!this.props.data[this.props.type][this.state.id]) {
       // Load page content from API by slug
       api.Content.dataBySlug(this.props.type, this.state.slug).then(
         res => {
+          let data = Array.isArray(res) ? res[0] : res;
+
+          this.setState({
+            id: data.id
+          });
+
           this.props.load({
             type: this.props.type,
             slug: this.state.slug,
-            data: res
+            id: data.id,
+            data: data
           });
         },
         error => {
@@ -114,15 +126,14 @@ class LoadTemplate extends Component {
 
   render() {
     this.checkForPreview();
-
     let data = this.state.preview;
 
     if (
       !this.state.preview &&
       this.props.data[this.props.type] &&
-      this.props.data[this.props.type][this.state.slug]
+      this.props.data[this.props.type][this.state.id]
     ) {
-      data = this.props.data[this.props.type][this.state.slug];
+      data = this.props.data[this.props.type][this.state.id];
     }
 
     let Meta = () => null;
@@ -133,7 +144,7 @@ class LoadTemplate extends Component {
       return <Redirect to="/not-found" />;
     }
 
-    if (data) {
+    if (data.acf) {
       Meta = () => {
         return (
           <Helmet>

@@ -35,13 +35,18 @@ export default (state = defaultState, action) => {
       };
 
     case "LOAD_DATA_BY_SLUG":
+      let normalizedData = normalize(
+        action.payload.data,
+        schema[action.payload.type]
+      );
+
       return {
         ...state,
         data: {
           ...state.data,
           [action.payload.type]: {
             ...state.data[action.payload.type],
-            [action.payload.slug]: action.payload.data[0]
+            ...normalizedData.entities[action.payload.type]
           }
         }
       };

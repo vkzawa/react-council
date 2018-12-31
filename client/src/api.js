@@ -27,8 +27,19 @@ const Menus = {
 
 const Content = {
   data: type => requests.get(`/wp-json/wp/v2/${type}`, { _embed: true }),
-  dataBySlug: (type, slug) =>
-    requests.get(`/wp-json/wp/v2/${type}`, { slug: slug, _embed: true }),
+  dataBySlug: (type, slug) => {
+    switch (type) {
+      case "events":
+        return requests.get(`/wp-json/tribe/events/v1/events/by-slug/${slug}`, {
+          _embed: true
+        });
+      default:
+        return requests.get(`/wp-json/wp/v2/${type}`, {
+          slug: slug,
+          _embed: true
+        });
+    }
+  },
   dataByCategory: (type, categories, params) =>
     requests.get(
       `/wp-json/wp/v2/${type}?categories=${categories}&${params}&_embed`
@@ -43,7 +54,9 @@ const Content = {
   pageList: (query = {}) =>
     requests.get("/wp-json/react-wp-rest/pages/list", query),
   eventsList: (query = {}) =>
-    requests.get("/wp-json/tribe/events/v1/events/", query)
+    requests.get("/wp-json/tribe/events/v1/events/", query),
+  eventBySlug: (slug, query = {}) =>
+    requests.get(`/wp-json/tribe/events/by-slug/${slug}`, query)
 };
 
 export default {

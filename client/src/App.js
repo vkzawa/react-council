@@ -42,6 +42,15 @@ class App extends Component {
             path="/post/:slug"
           />,
 
+          <Route
+            key="events"
+            render={props => (
+              <LoadTemplate {...props} template="event" type="events" />
+            )}
+            exact
+            path="/event/:slug"
+          />,
+
           pages.map((route, i) => {
             // If home, set path to empty string, = '/'
             if (route.slug === "home") {
@@ -179,6 +188,7 @@ const AppLayoutMain = styled.div`
 
   .AppLayoutMain-content {
     flex-grow: 1;
+    padding-bottom: 10px;
   }
 
   .AppLayoutMain-footer {
