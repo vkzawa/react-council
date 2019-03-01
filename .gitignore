@@ -70,8 +70,8 @@ api/docker-compose.yml
 # wp-config
 api/wp-config.php
 
-#
-client/build
+# Keep build for deploy branch
+# client/build
 
 
 # ignore WP
