@@ -34,11 +34,16 @@ const AsyncCalendar = AsyncChunks.generateChunk(() =>
   import(/* webpackChunkName: "Calendar" */ "../Calendar")
 );
 
+const AsyncAgenda = AsyncChunks.generateChunk(() =>
+  import(/* webpackChunkName: "Calendar" */ "../Agenda")
+);
+
 const templates = {
   home: AsyncHome,
   default: AsyncDefault,
   post: AsyncPost,
   event: AsyncEvent,
+  agenda: AsyncAgenda,
   calendar: AsyncCalendar
 };
 

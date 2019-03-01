@@ -53,6 +53,8 @@ const Content = {
     }),
   pageList: (query = {}) =>
     requests.get("/wp-json/react-wp-rest/pages/list", query),
+  categoriesList: (query = {}) =>
+    requests.get("/wp-json/wp/v2/categories", query),
   eventsList: (query = {}) =>
     requests.get("/wp-json/tribe/events/v1/events/", query),
   eventBySlug: (slug, query = {}) =>

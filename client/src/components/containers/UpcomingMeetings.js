@@ -8,7 +8,8 @@ class UpcomingMeetings extends Component {
     this.props.loadMeetings(
       api.Content.eventsList({
         page: 1,
-        per_page: 10
+        per_page: 10,
+        categories: "meetings"
       })
     );
   }

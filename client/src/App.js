@@ -19,18 +19,27 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Hidden from "@material-ui/core/Hidden";
 
 const mapStateToProps = state => ({
-  pageList: state.api.lists.pages
+  pageList: state.api.lists.pages,
+  postCategoriesList: state.api.lists.postCategories.reduce(
+    (categories, category) => {
+      categories = [...categories, state.api.data.postCategories[category]];
+      return categories;
+    },
+    []
+  )
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadPages: list => dispatch({ type: "LOAD_PAGES_LIST", payload: list })
+  loadPages: pages => dispatch({ type: "LOAD_PAGES_LIST", payload: pages }),
+  loadCategories: categories =>
+    dispatch({ type: "LOAD_CATEGORIES_LIST", payload: categories })
 });
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.buildRoutes = pages => {
+    this.buildPageRoutes = pages => {
       if (this.props.pageList && this.props.pageList.length > 0) {
         return [
           <Route
@@ -92,10 +101,33 @@ class App extends Component {
         ];
       }
     };
+
+    this.buildPostCategoryRoutes = categories => {
+      if (
+        this.props.postCategoriesList &&
+        this.props.postCategoriesList.length > 0
+      ) {
+        return [
+          categories.map((category, i) => {
+            return (
+              <Route
+                render={props => (
+                  <PostCategory {...props} categoryId={category.id} />
+                )}
+                exact
+                key={`postCategory-${category.id}`}
+                path={`/category/${category.slug}`}
+              />
+            );
+          })
+        ];
+      }
+    };
   }
 
   componentDidMount() {
     this.props.loadPages(api.Content.pageList());
+    this.props.loadCategories(api.Content.categoriesList());
 
     // Over-eager load code split chunks
     // Two seconds after App mounts (wait for more important resources)
@@ -151,7 +183,11 @@ class App extends Component {
                   <MobileHeader />
                   <MobileNav />
                 </Hidden>
-                <Switch>{this.buildRoutes(this.props.pageList)}</Switch>
+                <Switch>
+                  {this.buildPageRoutes(this.props.pageList)}
+                  {this.buildPostCategoryRoutes(this.props.postCategoriesList)}}
+                  <Route key="not-found" component={NotFound} />
+                </Switch>
               </div>
               <div className="AppLayoutMain-footer">
                 <Footer />

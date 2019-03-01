@@ -60,6 +60,27 @@ export default (state = defaultState, action) => {
         }
       };
 
+    case "LOAD_CATEGORIES_LIST":
+      let normalizedCategories = normalize(
+        action.payload,
+        schema.postCategoriesList
+      );
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          postCategories: {
+            ...state.data.postCategories,
+            ...normalizedCategories.entities.postCategories
+          }
+        },
+        lists: {
+          ...state.lists,
+          postCategories: normalizedCategories.result
+        }
+      };
+
     case "LOAD_UPCOMING_MEETINGS_LIST":
       return {
         ...state,
@@ -90,6 +111,18 @@ export default (state = defaultState, action) => {
       };
 
     case "LOAD_HOT_TOPICS_LIST":
+      return {
+        ...state,
+        lists: {
+          ...state.lists,
+          posts: {
+            ...state.lists.posts,
+            hotTopics: action.payload
+          }
+        }
+      };
+
+    case "LOAD_POSTS":
       return {
         ...state,
         lists: {
